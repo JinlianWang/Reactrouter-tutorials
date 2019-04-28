@@ -9,7 +9,7 @@ const miniCssPlugin = new MiniCssExtractPlugin({
 
 module.exports  = (env,argv) => {
 	return {
-	   entry: './main.js',
+	   entry: './src/index.js',
 	   output: {
 		  path: path.join(__dirname, '/bundle'),
 		  filename: 'index_bundle.js'
@@ -46,7 +46,7 @@ module.exports  = (env,argv) => {
 	   },
 	   plugins:[
 		  new HtmlWebpackPlugin({
-			 template: './index.html'
+			 template: './public/index.html'
 		  }), miniCssPlugin
 	   ]
 	}
