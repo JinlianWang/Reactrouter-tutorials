@@ -2,10 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin =  require('mini-css-extract-plugin');
 
-const miniCssPlugin = new MiniCssExtractPlugin({
-    filename: '[name].[hash].css',
-    chunkFilename:  '[id].[hash].css',
-});
 
 module.exports  = (env,argv) => {
 	return {
@@ -29,25 +25,14 @@ module.exports  = (env,argv) => {
 				}
 			 },{
 					test: /\.(sa|sc|c)ss$/,
-					use: [
-					  argv.mode =='development' ? 'style-loader' : MiniCssExtractPlugin.loader,
-					  {
-						loader: 'css-loader',
-						options: {
-						modules: true,
-						importLoaders: 1,
-						localIdentName: "[name]_[local]_[hash:base64:5]",
-						}
-					  },
-					  'sass-loader'
-					]
+					use: ['style-loader', 'css-loader']
 				}  
 		  ]
 	   },
 	   plugins:[
 		  new HtmlWebpackPlugin({
 			 template: './public/index.html'
-		  }), miniCssPlugin
+		  })
 	   ]
 	}
 }
